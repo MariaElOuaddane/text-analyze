@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="projet.css" rel="stylesheet">
+    <title>counting</title>
+    
+</head>
+<body>
+    <nav>
+        <div class='nav'><img src="logocount.png" width="85px" height="90px"><h3>Character counter</h3></div>
+        <img class="mode" src="dark-mode.png" width="30px" height="30px">
+    </nav>
+    <div class="cent">
+        <h1>Analyze your text in <br>real-time</h1>
+        <textarea placeholder="type in your texte . . ."></textarea>
+        <div style="display: flex; font-size: 20px; margin: 15px;"><input type="checkbox">Exclude Spaces.<span style="margin-left: 30px;"></span> <input type="checkbox"> Characters Limit.</div>
+        <div class="boxes">
+            <div class="c1"><h2 class="o1">00</h2><br><p>Total characters</p></div>
+            <div class="c2"><h2 class="o2">00</h2><br><p>Word count</p></div>
+            <div class="c3"><h2 class="o3">00</h2><br><p>Sentence count</p></div>
+        </div>
+    </div>
+    <script>
+        let p=document.querySelectorAll("p")
+        let h2=document.querySelectorAll('h2')
+        let h1=document.querySelectorAll('h1')
+        let mode=document.querySelector('.mode')
+        let body=document.querySelector('body')
+        let text=document.querySelector('textarea')
+        let char=document.querySelector(".o1")
+        let wo=document.querySelector('.o2')
+        let sen=document.querySelector('.o3')
+        mode.addEventListener('click',()=>{
+            body.classList.toggle('dark-mode')
+            if (body.classList.contains('dark-mode')){
+                mode.src= 'light.png'
+            }else{
+                mode.src='dark-mode.png'
+            }
+        })
+        
+        text.addEventListener('keyup',(e)=>{
+            let cpt=0
+            let words=1
+            let sent=0
+            wo.textContent=words
+            cpt=text.value.replace(/\s/g,'').length
+            char.textContent=cpt
+
+
+            words=text.value.trim().split(/\s/g).length
+            wo.textContent=words
+
+            sent= text.value.split(/[.]/g).length-1
+            sen.textContent=sent
+            
+        })
+    </script>
+</body>
+</html>
